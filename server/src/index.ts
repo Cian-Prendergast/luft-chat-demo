@@ -5,7 +5,7 @@ import Anthropic from '@anthropic-ai/sdk'
 import { loadSystemPrompt } from './skills'
 
 const app = express()
-app.use(cors({ origin: 'http://localhost:5173' }))
+app.use(cors({ origin: /^http:\/\/localhost:\d+$/ }))
 app.use(express.json())
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })

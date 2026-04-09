@@ -220,13 +220,62 @@ function ChatScreen({
 
 // ── Main ───────────────────────────────────────────────────────────────────────
 
+const API_URL = 'http://localhost:3001'
+
 export default function ISDChat() {
   const [messages, setMessages] = useState<Message[]>([])
 
-  const handleSend = (text: string) => {
+  const handleSend = async (text: string) => {
     const userMsg: Message = { id: Date.now().toString(), role: 'user', text }
     setMessages((prev) => [...prev, userMsg])
-    // Coach response logic will plug in here
+
+    // Placeholder assistant message that we'll stream into
+    const assistantId = (Date.now() + 1).toString()
+    setMessages((prev) => [...prev, { id: assistantId, role: 'assistant', text: '' }])
+
+    try {
+      const res = await fetch(`${API_URL}/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text }),
+      })
+
+      const reader = res.body?.getReader()
+      const decoder = new TextDecoder()
+      if (!reader) return
+
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+
+        const chunk = decoder.decode(value)
+        const lines = chunk.split('\n').filter((l) => l.startsWith('data: '))
+
+        for (const line of lines) {
+          const data = line.replace('data: ', '').trim()
+          if (data === '[DONE]') break
+          try {
+            const { text: token } = JSON.parse(data)
+            if (token) {
+              setMessages((prev) =>
+                prev.map((m) =>
+                  m.id === assistantId ? { ...m, text: m.text + token } : m
+                )
+              )
+            }
+          } catch {
+            // ignore malformed chunks
+          }
+        }
+      }
+    } catch (err) {
+      console.error('Chat error:', err)
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId ? { ...m, text: 'Sorry, something went wrong. Is the backend running?' } : m
+        )
+      )
+    }
   }
 
   const handleReset = () => setMessages([])

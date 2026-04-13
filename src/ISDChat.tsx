@@ -220,7 +220,8 @@ function ChatScreen({
 
 // ── Main ───────────────────────────────────────────────────────────────────────
 
-const API_URL = 'http://localhost:3001'
+// In dev, Vite proxies /chat → localhost:3001. In production, same origin.
+const API_URL = import.meta.env.DEV ? 'http://localhost:3001' : ''
 
 export default function ISDChat() {
   const [messages, setMessages] = useState<Message[]>([])

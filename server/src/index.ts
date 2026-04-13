@@ -1,11 +1,20 @@
 import 'dotenv/config'
 import express, { Request, Response } from 'express'
 import cors from 'cors'
+import path from 'path'
 import Anthropic from '@anthropic-ai/sdk'
 import { loadSystemPrompt } from './skills'
 
 const app = express()
-app.use(cors({ origin: /^http:\/\/localhost:\d+$/ }))
+
+// In production, the frontend is served from this same server —
+// allow all origins (Cloud Run URL is dynamic). In dev, restrict to localhost.
+const corsOrigin =
+  process.env.NODE_ENV === 'production'
+    ? true
+    : /^http:\/\/localhost:\d+$/
+
+app.use(cors({ origin: corsOrigin }))
 app.use(express.json())
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
@@ -73,6 +82,17 @@ app.post('/chat', async (req: Request, res: Response) => {
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' })
 })
+
+// ── Serve React frontend in production ────────────────────────────────────────
+
+if (process.env.NODE_ENV === 'production') {
+  const staticDir = path.resolve(__dirname, '../../dist')
+  app.use(express.static(staticDir))
+  // SPA fallback — any unmatched route serves index.html
+  app.get('*', (_req, res) => {
+    res.sendFile(path.join(staticDir, 'index.html'))
+  })
+}
 
 const PORT = process.env.PORT ?? 3001
 app.listen(PORT, () => console.log(`[server] Listening on http://localhost:${PORT}`))

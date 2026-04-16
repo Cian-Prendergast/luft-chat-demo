@@ -228,17 +228,21 @@ export default function ISDChat() {
 
   const handleSend = async (text: string) => {
     const userMsg: Message = { id: Date.now().toString(), role: 'user', text }
-    setMessages((prev) => [...prev, userMsg])
+    const updatedMessages = [...messages, userMsg]
+    setMessages(updatedMessages)
 
     // Placeholder assistant message that we'll stream into
     const assistantId = (Date.now() + 1).toString()
     setMessages((prev) => [...prev, { id: assistantId, role: 'assistant', text: '' }])
 
+    // Build full conversation history for the backend
+    const history = updatedMessages.map((m) => ({ role: m.role, content: m.text }))
+
     try {
       const res = await fetch(`${API_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text }),
+        body: JSON.stringify({ messages: history }),
       })
 
       const reader = res.body?.getReader()

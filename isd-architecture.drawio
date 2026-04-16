@@ -1,292 +1,354 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mxGraphModel dx="1622" dy="862" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1169" math="0" shadow="0">
+<mxGraphModel dx="1800" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1200" math="0" shadow="0">
   <root>
     <mxCell id="0" />
     <mxCell id="1" parent="0" />
 
-    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════ -->
     <!-- SECTION LABELS -->
-    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════ -->
 
-    <mxCell id="label-startup" value="SERVER STARTUP (once)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=11;fontColor=#666666;" vertex="1" parent="1">
-      <mxGeometry x="60" y="30" width="300" height="30" as="geometry" />
-    </mxCell>
-
-    <mxCell id="label-runtime" value="RUNTIME — PER REQUEST" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=11;fontColor=#666666;" vertex="1" parent="1">
-      <mxGeometry x="440" y="30" width="680" height="30" as="geometry" />
+    <mxCell id="label-startup" value="SERVER STARTUP (once)" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=11;fontColor=#666666;" vertex="1" parent="1">
+      <mxGeometry x="50" y="25" width="300" height="30" as="geometry" />
     </mxCell>
 
-    <mxCell id="label-future" value="FUTURE — LOGIN + ROLE CLASSIFICATION" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=11;fontColor=#b45309;" vertex="1" parent="1">
-      <mxGeometry x="1220" y="30" width="380" height="30" as="geometry" />
+    <mxCell id="label-frontend" value="FRONTEND — React / ISDChat.tsx" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=11;fontColor=#666666;" vertex="1" parent="1">
+      <mxGeometry x="420" y="25" width="420" height="30" as="geometry" />
     </mxCell>
 
-    <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- SERVER STARTUP SECTION -->
-    <!-- ═══════════════════════════════════════════════════════════ -->
-
-    <mxCell id="bg-startup" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;opacity=50;" vertex="1" parent="1">
-      <mxGeometry x="40" y="65" width="340" height="700" as="geometry" />
+    <mxCell id="label-backend" value="BACKEND — Express / index.ts" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=11;fontColor=#666666;" vertex="1" parent="1">
+      <mxGeometry x="900" y="25" width="420" height="30" as="geometry" />
     </mxCell>
 
-    <mxCell id="md-label" value="src/content/ (markdown skills)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=2;fontSize=10;fontColor=#555555;" vertex="1" parent="1">
-      <mxGeometry x="70" y="85" width="260" height="20" as="geometry" />
+    <mxCell id="label-external" value="EXTERNAL SERVICES" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=11;fontColor=#666666;" vertex="1" parent="1">
+      <mxGeometry x="1390" y="25" width="280" height="30" as="geometry" />
     </mxCell>
 
-    <mxCell id="md-persona" value="📄 persona.md" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
-      <mxGeometry x="70" y="110" width="160" height="36" as="geometry" />
-    </mxCell>
-    <mxCell id="md-persona-desc" value="who the AI is" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;fontColor=#888888;" vertex="1" parent="1">
-      <mxGeometry x="240" y="119" width="120" height="20" as="geometry" />
+    <mxCell id="label-future" value="FUTURE" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=11;fontColor=#b45309;" vertex="1" parent="1">
+      <mxGeometry x="1740" y="25" width="260" height="30" as="geometry" />
     </mxCell>
 
-    <mxCell id="md-isd" value="📄 isd-framework.md" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
-      <mxGeometry x="70" y="158" width="160" height="36" as="geometry" />
-    </mxCell>
-    <mxCell id="md-isd-desc" value="7-phase methodology" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;fontColor=#888888;" vertex="1" parent="1">
-      <mxGeometry x="240" y="167" width="120" height="20" as="geometry" />
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SERVER STARTUP -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <mxCell id="bg-startup" value="" style="rounded=1;fillColor=#f5f5f5;strokeColor=#cccccc;opacity=50;" vertex="1" parent="1">
+      <mxGeometry x="30" y="60" width="360" height="760" as="geometry" />
     </mxCell>
 
-    <mxCell id="md-playbook" value="📄 playbook.md" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
-      <mxGeometry x="70" y="206" width="160" height="36" as="geometry" />
-    </mxCell>
-    <mxCell id="md-playbook-desc" value="guidance patterns" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;fontColor=#888888;" vertex="1" parent="1">
-      <mxGeometry x="240" y="215" width="120" height="20" as="geometry" />
+    <mxCell id="md-label" value="src/content/ — markdown skills" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=2;fontSize=10;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="60" y="80" width="280" height="20" as="geometry" />
     </mxCell>
 
-    <mxCell id="md-decision" value="📄 decision-making.md" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
-      <mxGeometry x="70" y="254" width="160" height="36" as="geometry" />
-    </mxCell>
-    <mxCell id="md-decision-desc" value="when/how to decide" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;fontColor=#888888;" vertex="1" parent="1">
-      <mxGeometry x="240" y="263" width="120" height="20" as="geometry" />
-    </mxCell>
+    <mxCell id="md-persona"    value="📄 persona.md"          style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1"><mxGeometry x="60" y="105" width="160" height="34" as="geometry" /></mxCell>
+    <mxCell id="md-isd"        value="📄 isd-framework.md"    style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1"><mxGeometry x="60" y="150" width="160" height="34" as="geometry" /></mxCell>
+    <mxCell id="md-playbook"   value="📄 playbook.md"         style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1"><mxGeometry x="60" y="195" width="160" height="34" as="geometry" /></mxCell>
+    <mxCell id="md-decision"   value="📄 decision-making.md"  style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1"><mxGeometry x="60" y="240" width="160" height="34" as="geometry" /></mxCell>
+    <mxCell id="md-collab"     value="📄 collaboration.md"    style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1"><mxGeometry x="60" y="285" width="160" height="34" as="geometry" /></mxCell>
+    <mxCell id="md-quality"    value="📄 quality-standards.md" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1"><mxGeometry x="60" y="330" width="160" height="34" as="geometry" /></mxCell>
+    <mxCell id="md-mindsets"   value="📄 mindsets.md"         style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1"><mxGeometry x="60" y="375" width="160" height="34" as="geometry" /></mxCell>
 
-    <mxCell id="md-collab" value="📄 collaboration.md" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
-      <mxGeometry x="70" y="302" width="160" height="36" as="geometry" />
-    </mxCell>
-    <mxCell id="md-collab-desc" value="team dynamics" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;fontColor=#888888;" vertex="1" parent="1">
-      <mxGeometry x="240" y="311" width="120" height="20" as="geometry" />
-    </mxCell>
-
-    <mxCell id="md-quality" value="📄 quality-standards.md" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
-      <mxGeometry x="70" y="350" width="160" height="36" as="geometry" />
-    </mxCell>
-    <mxCell id="md-quality-desc" value="what good looks like" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;fontColor=#888888;" vertex="1" parent="1">
-      <mxGeometry x="240" y="359" width="120" height="20" as="geometry" />
-    </mxCell>
-
-    <mxCell id="md-mindsets" value="📄 mindsets.md" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
-      <mxGeometry x="70" y="398" width="160" height="36" as="geometry" />
-    </mxCell>
-    <mxCell id="md-mindsets-desc" value="values &amp; principles" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;fontColor=#888888;" vertex="1" parent="1">
-      <mxGeometry x="240" y="407" width="120" height="20" as="geometry" />
-    </mxCell>
-
-    <mxCell id="arrow-md-to-skills" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="md-mindsets" target="skills-ts">
+    <mxCell id="arrow-md-skills" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="md-mindsets" target="skills-ts">
       <mxGeometry relative="1" as="geometry" />
     </mxCell>
 
-    <!-- skills.ts — now includes fetchFigmaFile -->
-    <mxCell id="skills-ts" value="skills.ts&#xa;loadSystemPrompt()&#xa;fetchFigmaFile()  ← NEW&#xa;extractFigmaKey()  ← NEW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;fontStyle=1;align=left;" vertex="1" parent="1">
-      <mxGeometry x="80" y="480" width="220" height="65" as="geometry" />
+    <mxCell id="skills-ts" value="skills.ts&#xa;loadSystemPrompt()&#xa;fetchFigmaFile()&#xa;extractFigmaKey()" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;fontStyle=1;align=left;" vertex="1" parent="1">
+      <mxGeometry x="80" y="455" width="210" height="65" as="geometry" />
     </mxCell>
 
-    <mxCell id="arrow-skills-to-prompt" value="joins with '---'" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=10;fontColor=#888888;" edge="1" parent="1" source="skills-ts" target="system-prompt">
+    <mxCell id="arrow-skills-prompt" value="joins with '---'" style="edgeStyle=orthogonalEdgeStyle;fontSize=10;fontColor=#888888;" edge="1" parent="1" source="skills-ts" target="system-prompt">
       <mxGeometry relative="1" as="geometry" />
     </mxCell>
 
-    <mxCell id="system-prompt" value="SYSTEM_PROMPT&#xa;(in-memory string)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" vertex="1" parent="1">
-      <mxGeometry x="100" y="600" width="200" height="50" as="geometry" />
+    <mxCell id="system-prompt" value="SYSTEM_PROMPT&#xa;(in-memory string)" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="95" y="575" width="200" height="50" as="geometry" />
     </mxCell>
 
-    <mxCell id="note-once" value="⚡ loaded ONCE at startup — reused for every request" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=center;fontSize=10;rounded=1;fontColor=#2d6a2d;" vertex="1" parent="1">
-      <mxGeometry x="70" y="662" width="260" height="30" as="geometry" />
+    <mxCell id="note-once" value="⚡ loaded ONCE — reused every request" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=center;fontSize=10;rounded=1;fontColor=#2d6a2d;" vertex="1" parent="1">
+      <mxGeometry x="70" y="638" width="260" height="28" as="geometry" />
     </mxCell>
 
-    <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- RUNTIME SECTION -->
-    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FRONTEND -->
+    <!-- ═══════════════════════════════════════════ -->
 
-    <mxCell id="bg-runtime" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;opacity=50;" vertex="1" parent="1">
-      <mxGeometry x="420" y="65" width="760" height="700" as="geometry" />
+    <mxCell id="bg-frontend" value="" style="rounded=1;fillColor=#f0f4ff;strokeColor=#6c8ebf;opacity=40;" vertex="1" parent="1">
+      <mxGeometry x="410" y="60" width="450" height="760" as="geometry" />
     </mxCell>
 
-    <!-- User -->
-    <mxCell id="user" value="👤 UI Designer&#xa;ISDChat.tsx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
-      <mxGeometry x="550" y="100" width="180" height="50" as="geometry" />
+    <!-- ── Screen 1: ProjectSetup ── -->
+    <mxCell id="screen-setup" value="① ProjectSetup screen" style="rounded=1;fillColor=#1a2044;strokeColor=#1a2044;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="445" y="85" width="210" height="36" as="geometry" />
     </mxCell>
 
-    <mxCell id="note-history" value='sends full conversation history&#xa;{ messages: [{role, content}, ...] }  ← NEW' style="text;html=1;strokeColor=#6c8ebf;fillColor=#e8f4ff;align=center;fontSize=10;rounded=1;" vertex="1" parent="1">
-      <mxGeometry x="750" y="108" width="280" height="36" as="geometry" />
+    <mxCell id="setup-fields" value="• Role (pill select — required)&#xa;• Storyline one-liner (required)&#xa;• Figma board URL (optional)&#xa;• Deadline (optional)&#xa;&#xa;Phase left blank — inferred later" style="rounded=1;fillColor=#ffffff;strokeColor=#c0cce8;fontSize=10;align=left;" vertex="1" parent="1">
+      <mxGeometry x="445" y="130" width="210" height="100" as="geometry" />
     </mxCell>
 
-    <mxCell id="arrow-user-to-api" value="POST /chat" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=10;" edge="1" parent="1" source="user" target="post-chat">
+    <mxCell id="arrow-setup-to-project" value="onDone(ctx)" style="edgeStyle=orthogonalEdgeStyle;fontSize=10;" edge="1" parent="1" source="screen-setup" target="project-state">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="720" y="103" />
+          <mxPoint x="720" y="155" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- ProjectContext state -->
+    <mxCell id="project-state" value="ProjectContext state&#xa;{ role, storyline, figmaUrl,&#xa;  deadline, phase }" style="rounded=1;fillColor=#ffe6cc;strokeColor=#e67c00;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="660" y="120" width="175" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- TopBar chip -->
+    <mxCell id="topbar-chip" value="TopBar context chip&#xa;role · phase · deadline&#xa;(click to re-edit)" style="rounded=1;fillColor=#ffe6cc;strokeColor=#e67c00;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="660" y="220" width="175" height="55" as="geometry" />
+    </mxCell>
+
+    <mxCell id="arrow-state-chip" value="drives" style="edgeStyle=orthogonalEdgeStyle;fontSize=10;" edge="1" parent="1" source="project-state" target="topbar-chip">
       <mxGeometry relative="1" as="geometry" />
     </mxCell>
 
-    <!-- POST /chat -->
-    <mxCell id="post-chat" value="Express: POST /chat&#xa;index.ts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" vertex="1" parent="1">
-      <mxGeometry x="550" y="220" width="180" height="50" as="geometry" />
+    <!-- ── Screen 2: WelcomeScreen ── -->
+    <mxCell id="screen-welcome" value="② WelcomeScreen" style="rounded=1;fillColor=#1a2044;strokeColor=#1a2044;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="445" y="285" width="210" height="36" as="geometry" />
     </mxCell>
 
-    <mxCell id="context-prefix" value="optional prefix: [Role: X | Phase: Y]" style="text;html=1;strokeColor=#d6b656;fillColor=#fff9e6;align=center;fontSize=10;rounded=1;" vertex="1" parent="1">
-      <mxGeometry x="750" y="232" width="260" height="28" as="geometry" />
+    <mxCell id="welcome-detail" value="Personalised greeting:&#xa;&quot;Hi Service Designer! Working on X...&quot;&#xa;Hint if Figma URL is set" style="rounded=1;fillColor=#ffffff;strokeColor=#c0cce8;fontSize=10;align=left;" vertex="1" parent="1">
+      <mxGeometry x="445" y="330" width="210" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="arrow-setup-welcome" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="screen-setup" target="screen-welcome">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- ── Screen 3: ChatScreen ── -->
+    <mxCell id="screen-chat" value="③ ChatScreen" style="rounded=1;fillColor=#1a2044;strokeColor=#1a2044;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="445" y="435" width="210" height="36" as="geometry" />
+    </mxCell>
+
+    <mxCell id="chat-detail" value="Message history + quick prompts&#xa;Input: &quot;look at my Figma board&quot;" style="rounded=1;fillColor=#ffffff;strokeColor=#c0cce8;fontSize=10;align=left;" vertex="1" parent="1">
+      <mxGeometry x="445" y="480" width="210" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="arrow-welcome-chat" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="screen-welcome" target="screen-chat">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- POST /chat arrow -->
+    <mxCell id="arrow-chat-post" value="POST /chat&#xa;{ messages, projectContext }" style="edgeStyle=orthogonalEdgeStyle;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="screen-chat" target="post-chat">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- SSE back arrow -->
+    <mxCell id="arrow-sse-back" value="SSE: {text} tokens&#xa;SSE: {type:'context_update'}" style="edgeStyle=orthogonalEdgeStyle;fontSize=10;strokeColor=#82b366;fontColor=#2d6a2d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="stream-out" target="screen-chat">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="870" y="695" />
+          <mxPoint x="550" y="695" />
+          <mxPoint x="550" y="458" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- context_update updates TopBar -->
+    <mxCell id="note-ctx-update" value="context_update event →&#xa;phase chip updates silently" style="text;html=1;strokeColor=#e67c00;fillColor=#fff3e0;align=center;fontSize=10;rounded=1;" vertex="1" parent="1">
+      <mxGeometry x="655" y="440" width="185" height="36" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- BACKEND -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <mxCell id="bg-backend" value="" style="rounded=1;fillColor=#f5f5f5;strokeColor=#cccccc;opacity=50;" vertex="1" parent="1">
+      <mxGeometry x="890" y="60" width="460" height="760" as="geometry" />
+    </mxCell>
+
+    <!-- POST /chat handler -->
+    <mxCell id="post-chat" value="POST /chat&#xa;index.ts" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="940" y="130" width="200" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- Context block injection -->
+    <mxCell id="ctx-inject" value="buildContextBlock(projectContext)&#xa;[PROJECT CONTEXT]&#xa;Role: Service Designer&#xa;Phase: Empathize&#xa;Project: Redesign check-in...&#xa;Figma: figma.com/board/...&#xa;Deadline: 2026-05-01&#xa;[/PROJECT CONTEXT]" style="rounded=1;fillColor=#fff9db;strokeColor=#d6b656;fontSize=10;align=left;" vertex="1" parent="1">
+      <mxGeometry x="940" y="210" width="240" height="120" as="geometry" />
+    </mxCell>
+
+    <mxCell id="arrow-post-ctx" value="inject once" style="edgeStyle=orthogonalEdgeStyle;fontSize=10;" edge="1" parent="1" source="post-chat" target="ctx-inject">
+      <mxGeometry relative="1" as="geometry" />
     </mxCell>
 
     <!-- system prompt cross-section arrow -->
-    <mxCell id="arrow-prompt-to-chat" value="system prompt" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=10;fontColor=#2d6a2d;strokeColor=#82b366;dashed=1;" edge="1" parent="1" source="system-prompt" target="post-chat">
+    <mxCell id="arrow-sysprompt-to-post" value="system prompt" style="edgeStyle=orthogonalEdgeStyle;fontSize=10;fontColor=#2d6a2d;strokeColor=#82b366;dashed=1;" edge="1" parent="1" source="system-prompt" target="post-chat">
       <mxGeometry relative="1" as="geometry">
         <Array as="points">
-          <mxPoint x="400" y="625" />
-          <mxPoint x="400" y="420" />
-          <mxPoint x="530" y="420" />
-          <mxPoint x="530" y="245" />
+          <mxPoint x="390" y="600" />
+          <mxPoint x="390" y="155" />
+          <mxPoint x="920" y="155" />
         </Array>
       </mxGeometry>
     </mxCell>
 
-    <mxCell id="arrow-post-to-claude" value="1st call (non-streaming)&#xa;detect tool use" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=10;" edge="1" parent="1" source="post-chat" target="claude-api">
-      <mxGeometry relative="1" as="geometry" />
+    <!-- Claude call -->
+    <mxCell id="claude-api" value="Anthropic SDK&#xa;claude-sonnet-4-6&#xa;tools: [get_figma_file,&#xa;update_project_context]" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="940" y="380" width="220" height="70" as="geometry" />
     </mxCell>
 
-    <!-- Claude API -->
-    <mxCell id="claude-api" value="Anthropic SDK&#xa;claude-sonnet-4-6&#xa;+ tools: [get_figma_file]  ← NEW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" vertex="1" parent="1">
-      <mxGeometry x="530" y="350" width="220" height="65" as="geometry" />
+    <mxCell id="arrow-ctx-claude" value="messages + context block" style="edgeStyle=orthogonalEdgeStyle;fontSize=10;" edge="1" parent="1" source="ctx-inject" target="claude-api">
+      <mxGeometry relative="1" as="geometry" />
     </mxCell>
 
     <!-- Tool use branch -->
-    <mxCell id="arrow-tool-use" value="stop_reason = tool_use" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=10;strokeColor=#e67c00;fontColor=#e67c00;" edge="1" parent="1" source="claude-api" target="tool-exec">
+    <mxCell id="arrow-tool-use" value="stop_reason = tool_use" style="edgeStyle=orthogonalEdgeStyle;fontSize=10;strokeColor=#e67c00;fontColor=#e67c00;" edge="1" parent="1" source="claude-api" target="tool-exec">
       <mxGeometry relative="1" as="geometry" />
     </mxCell>
 
-    <!-- Tool executor -->
-    <mxCell id="tool-exec" value="executeTool()&#xa;get_figma_file" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#e67c00;fontSize=11;fontStyle=1;" vertex="1" parent="1">
-      <mxGeometry x="530" y="500" width="220" height="50" as="geometry" />
+    <mxCell id="tool-exec" value="executeTool(name, input, res)" style="rounded=1;fillColor=#ffe6cc;strokeColor=#e67c00;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="940" y="510" width="220" height="44" as="geometry" />
+    </mxCell>
+
+    <!-- Two tool branches -->
+    <mxCell id="tool-figma-label" value="get_figma_file →" style="text;html=1;strokeColor=none;fillColor=none;fontSize=10;fontColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="940" y="572" width="120" height="20" as="geometry" />
+    </mxCell>
+
+    <mxCell id="tool-ctx-label" value="update_project_context →" style="text;html=1;strokeColor=none;fillColor=none;fontSize=10;fontColor=#e67c00;" vertex="1" parent="1">
+      <mxGeometry x="940" y="594" width="180" height="20" as="geometry" />
+    </mxCell>
+
+    <mxCell id="tool-ctx-action" value="writes context_update SSE event&#xa;→ frontend chip updates silently" style="text;html=1;strokeColor=#e67c00;fillColor=#fff3e0;fontSize=10;rounded=1;" vertex="1" parent="1">
+      <mxGeometry x="940" y="618" width="230" height="36" as="geometry" />
+    </mxCell>
+
+    <!-- Loop back -->
+    <mxCell id="arrow-loop" value="tool_result appended → loop" style="edgeStyle=orthogonalEdgeStyle;fontSize=10;strokeColor=#e67c00;fontColor=#e67c00;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="tool-exec" target="claude-api">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="910" y="532" />
+          <mxPoint x="910" y="415" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- End turn → stream -->
+    <mxCell id="arrow-end-turn" value="stop_reason = end_turn" style="edgeStyle=orthogonalEdgeStyle;fontSize=10;strokeColor=#82b366;fontColor=#2d6a2d;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="claude-api" target="stream-out">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="1200" y="415" />
+          <mxPoint x="1200" y="695" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <mxCell id="stream-out" value="Streaming call&#xa;SSE → text/event-stream" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="940" y="670" width="220" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EXTERNAL SERVICES -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <mxCell id="bg-external" value="" style="rounded=1;fillColor=#fdf0f0;strokeColor=#b85450;opacity=40;" vertex="1" parent="1">
+      <mxGeometry x="1380" y="60" width="320" height="760" as="geometry" />
     </mxCell>
 
     <!-- Figma API -->
-    <mxCell id="figma-api" value="🎨 Figma REST API&#xa;api.figma.com/v1/files/:key&#xa;X-Figma-Token header" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" vertex="1" parent="1">
-      <mxGeometry x="800" y="500" width="220" height="65" as="geometry" />
+    <mxCell id="figma-api" value="🎨 Figma REST API&#xa;api.figma.com/v1/files/:key&#xa;X-Figma-Token header" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1415" y="200" width="240" height="65" as="geometry" />
     </mxCell>
 
-    <mxCell id="arrow-tool-to-figma" value="fetch file structure" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=10;" edge="1" parent="1" source="tool-exec" target="figma-api">
+    <mxCell id="arrow-tool-to-figma" value="fetch" style="edgeStyle=orthogonalEdgeStyle;fontSize=10;" edge="1" parent="1" source="tool-exec" target="figma-api">
       <mxGeometry relative="1" as="geometry" />
     </mxCell>
 
-    <mxCell id="arrow-figma-return" value="pages, frames,&#xa;sticky notes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=10;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="figma-api" target="tool-exec">
+    <mxCell id="figma-returns" value="returns: pages, frames,&#xa;sections, sticky note text" style="text;html=1;strokeColor=#b85450;fillColor=#fdf0f0;align=center;fontSize=10;rounded=1;" vertex="1" parent="1">
+      <mxGeometry x="1415" y="285" width="240" height="36" as="geometry" />
+    </mxCell>
+
+    <mxCell id="arrow-figma-back" value="" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#b85450;" edge="1" parent="1" source="figma-returns" target="tool-exec">
       <mxGeometry relative="1" as="geometry">
         <Array as="points">
-          <mxPoint x="910" y="480" />
-          <mxPoint x="640" y="480" />
+          <mxPoint x="1415" y="303" />
+          <mxPoint x="1370" y="303" />
+          <mxPoint x="1370" y="532" />
+          <mxPoint x="1160" y="532" />
         </Array>
       </mxGeometry>
     </mxCell>
 
-    <!-- Loop back arrow -->
-    <mxCell id="arrow-loop-back" value="tool_result appended&#xa;to messages → loop" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=10;strokeColor=#e67c00;fontColor=#e67c00;dashed=1;" edge="1" parent="1" source="tool-exec" target="claude-api">
-      <mxGeometry relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="490" y="525" />
-          <mxPoint x="490" y="382" />
-        </Array>
-      </mxGeometry>
+    <!-- Anthropic API -->
+    <mxCell id="anthropic-api" value="🤖 Anthropic API&#xa;claude-sonnet-4-6&#xa;api.anthropic.com" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1415" y="380" width="240" height="65" as="geometry" />
     </mxCell>
 
-    <!-- End turn branch -->
-    <mxCell id="arrow-end-turn" value="stop_reason = end_turn" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=10;strokeColor=#82b366;fontColor=#2d6a2d;" edge="1" parent="1" source="claude-api" target="stream">
-      <mxGeometry relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="800" y="382" />
-          <mxPoint x="800" y="620" />
-          <mxPoint x="700" y="620" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-
-    <!-- Streaming call -->
-    <mxCell id="stream" value="2nd call (streaming)&#xa;SSE → text/event-stream" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
-      <mxGeometry x="550" y="600" width="200" height="50" as="geometry" />
-    </mxCell>
-
-    <mxCell id="arrow-stream-to-ui" value="tokens append to state" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=10;" edge="1" parent="1" source="stream" target="chat-ui">
+    <mxCell id="arrow-claude-to-ext" value="" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#9673a6;" edge="1" parent="1" source="claude-api" target="anthropic-api">
       <mxGeometry relative="1" as="geometry" />
     </mxCell>
 
-    <mxCell id="chat-ui" value="ChatScreen renders&#xa;streamed reply" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
-      <mxGeometry x="550" y="710" width="180" height="45" as="geometry" />
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FUTURE -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <mxCell id="bg-future" value="" style="rounded=1;fillColor=#fffbf0;strokeColor=#f59e0b;opacity=60;" vertex="1" parent="1">
+      <mxGeometry x="1730" y="60" width="340" height="760" as="geometry" />
     </mxCell>
 
-    <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- FUTURE SECTION -->
-    <!-- ═══════════════════════════════════════════════════════════ -->
-
-    <mxCell id="bg-future" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffbf0;strokeColor=#f59e0b;opacity=60;" vertex="1" parent="1">
-      <mxGeometry x="1210" y="65" width="400" height="700" as="geometry" />
+    <mxCell id="future-sso" value="SSO / Auth&#xa;classify_user_role(token)" style="rounded=1;fillColor=#fde68a;strokeColor=#f59e0b;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1790" y="110" width="220" height="50" as="geometry" />
     </mxCell>
 
-    <mxCell id="login" value="👤 User Login&#xa;(auth token)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fde68a;strokeColor=#f59e0b;fontSize=11;" vertex="1" parent="1">
-      <mxGeometry x="1300" y="105" width="180" height="50" as="geometry" />
+    <mxCell id="future-sso-note" value="Role auto-set from login&#xa;ProjectSetup skips role pill" style="text;html=1;strokeColor=#f59e0b;fillColor=#fef9e7;align=center;fontSize=10;rounded=1;" vertex="1" parent="1">
+      <mxGeometry x="1775" y="172" width="250" height="36" as="geometry" />
     </mxCell>
 
-    <mxCell id="arrow-login-to-classify" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="login" target="classify">
-      <mxGeometry relative="1" as="geometry" />
+    <mxCell id="future-roles" value="Service Designer   Developer&#xa;Product Owner   Researcher" style="rounded=1;fillColor=#fbbf24;strokeColor=#d97706;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="1775" y="225" width="250" height="40" as="geometry" />
     </mxCell>
 
-    <mxCell id="classify" value="classify_user_role(token)&#xa;maps identity → Role" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fbbf24;strokeColor=#d97706;fontSize=11;fontStyle=1;" vertex="1" parent="1">
-      <mxGeometry x="1275" y="225" width="230" height="50" as="geometry" />
+    <mxCell id="future-oauth" value="Figma OAuth&#xa;(replace PAT token)" style="rounded=1;fillColor=#fde68a;strokeColor=#f59e0b;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="1790" y="310" width="220" height="44" as="geometry" />
     </mxCell>
 
-    <mxCell id="role-sd" value="Service Designer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;fontSize=10;" vertex="1" parent="1">
-      <mxGeometry x="1225" y="340" width="120" height="30" as="geometry" />
-    </mxCell>
-    <mxCell id="role-dev" value="Developer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#16a34a;fontSize=10;" vertex="1" parent="1">
-      <mxGeometry x="1360" y="340" width="100" height="30" as="geometry" />
-    </mxCell>
-    <mxCell id="role-po" value="Product Owner" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#2563eb;fontSize=10;" vertex="1" parent="1">
-      <mxGeometry x="1475" y="340" width="110" height="30" as="geometry" />
+    <mxCell id="future-md-subsets" value="Role-specific MD subsets&#xa;Only load relevant skills" style="rounded=1;fillColor=#fde68a;strokeColor=#f59e0b;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="1790" y="375" width="220" height="44" as="geometry" />
     </mxCell>
 
-    <mxCell id="arrow-classify-sd" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="classify" target="role-sd">
-      <mxGeometry relative="1" as="geometry" />
-    </mxCell>
-    <mxCell id="arrow-classify-dev" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="classify" target="role-dev">
-      <mxGeometry relative="1" as="geometry" />
-    </mxCell>
-    <mxCell id="arrow-classify-po" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="classify" target="role-po">
-      <mxGeometry relative="1" as="geometry" />
+    <mxCell id="future-phase-dashboard" value="Phase context pushed&#xa;from ISD Dashboard" style="rounded=1;fillColor=#fde68a;strokeColor=#f59e0b;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="1790" y="440" width="220" height="44" as="geometry" />
     </mxCell>
 
-    <mxCell id="arrow-roles-to-future" value="role auto-populated" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=10;" edge="1" parent="1" source="role-sd" target="future-post-chat">
-      <mxGeometry relative="1" as="geometry" />
+    <mxCell id="shipped-badge" value="✅ Conversation history&#xa;✅ Figma tool use&#xa;✅ Project context card&#xa;✅ Silent phase updates" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=left;fontSize=10;rounded=1;fontColor=#2d6a2d;" vertex="1" parent="1">
+      <mxGeometry x="1760" y="560" width="260" height="70" as="geometry" />
     </mxCell>
 
-    <mxCell id="future-post-chat" value="POST /chat&#xa;{ messages: [...], role: &quot;Service Designer&quot; }&#xa;role injected automatically" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fbbf24;strokeColor=#d97706;fontSize=10;" vertex="1" parent="1">
-      <mxGeometry x="1265" y="435" width="250" height="60" as="geometry" />
-    </mxCell>
-
-    <mxCell id="note-future" value="💡 Still to build:&#xa;• role-specific MD file subsets&#xa;• phase context pushed from dashboard&#xa;• Figma OAuth (replace PAT)" style="text;html=1;strokeColor=#d97706;fillColor=#fffbeb;align=left;fontSize=10;rounded=1;" vertex="1" parent="1">
-      <mxGeometry x="1240" y="530" width="270" height="75" as="geometry" />
-    </mxCell>
-
-    <!-- Already shipped badge -->
-    <mxCell id="shipped-figma" value="✅ Figma integration: SHIPPED&#xa;✅ Conversation history: SHIPPED" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=center;fontSize=10;rounded=1;fontColor=#2d6a2d;" vertex="1" parent="1">
-      <mxGeometry x="1240" y="630" width="270" height="40" as="geometry" />
-    </mxCell>
-
-    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════ -->
     <!-- DIVIDERS -->
-    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════ -->
 
-    <mxCell id="divider1" value="" style="endArrow=none;dashed=1;html=1;strokeColor=#cccccc;strokeWidth=2;" edge="1" parent="1">
+    <mxCell id="div1" value="" style="endArrow=none;dashed=1;strokeColor=#cccccc;strokeWidth=2;" edge="1" parent="1">
       <mxGeometry relative="1" as="geometry">
-        <mxPoint x="400" y="65" as="sourcePoint" />
-        <mxPoint x="400" y="765" as="targetPoint" />
+        <mxPoint x="400" y="60" as="sourcePoint" />
+        <mxPoint x="400" y="820" as="targetPoint" />
       </mxGeometry>
     </mxCell>
 
-    <mxCell id="divider2" value="" style="endArrow=none;dashed=1;html=1;strokeColor=#f59e0b;strokeWidth=2;" edge="1" parent="1">
+    <mxCell id="div2" value="" style="endArrow=none;dashed=1;strokeColor=#cccccc;strokeWidth=2;" edge="1" parent="1">
       <mxGeometry relative="1" as="geometry">
-        <mxPoint x="1200" y="65" as="sourcePoint" />
-        <mxPoint x="1200" y="765" as="targetPoint" />
+        <mxPoint x="880" y="60" as="sourcePoint" />
+        <mxPoint x="880" y="820" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+
+    <mxCell id="div3" value="" style="endArrow=none;dashed=1;strokeColor=#b85450;strokeWidth=2;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="1370" y="60" as="sourcePoint" />
+        <mxPoint x="1370" y="820" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+
+    <mxCell id="div4" value="" style="endArrow=none;dashed=1;strokeColor=#f59e0b;strokeWidth=2;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="1720" y="60" as="sourcePoint" />
+        <mxPoint x="1720" y="820" as="targetPoint" />
       </mxGeometry>
     </mxCell>
 

@@ -18,7 +18,7 @@ export interface ProjectContext {
 }
 
 const ISD_PHASES = ['Empathize', 'Define', 'Ideate', 'Prototype', 'Implement', 'Measure', 'Listen']
-const ROLES = ['Service Designer', 'CX Writer', 'Product Owner', 'Developer', 'Researcher']
+const ROLES = ['UX Designer', 'UI Designer', 'UX Writer', 'User Researcher', 'Service Designer', 'Conversational Designer']
 
 // ── Quick prompts ──────────────────────────────────────────────────────────────
 

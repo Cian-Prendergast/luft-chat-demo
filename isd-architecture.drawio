@@ -300,8 +300,8 @@
       <mxGeometry x="1775" y="172" width="250" height="36" as="geometry" />
     </mxCell>
 
-    <mxCell id="future-roles" value="Service Designer   Developer&#xa;Product Owner   Researcher" style="rounded=1;fillColor=#fbbf24;strokeColor=#d97706;fontSize=10;" vertex="1" parent="1">
-      <mxGeometry x="1775" y="225" width="250" height="40" as="geometry" />
+    <mxCell id="future-roles" value="Existing: Service Designer · CX Writer&#xa;Product Owner · Developer · Researcher&#xa;&#xa;+ New: UX Designer · UI Designer&#xa;UX Writer · User Researcher&#xa;Conversational Designer" style="rounded=1;fillColor=#fbbf24;strokeColor=#d97706;fontSize=10;align=left;" vertex="1" parent="1">
+      <mxGeometry x="1775" y="225" width="250" height="90" as="geometry" />
     </mxCell>
 
     <mxCell id="future-oauth" value="Figma OAuth&#xa;(replace PAT token)" style="rounded=1;fillColor=#fde68a;strokeColor=#f59e0b;fontSize=11;" vertex="1" parent="1">

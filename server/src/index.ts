@@ -21,7 +21,7 @@ const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 const SYSTEM_PROMPT = loadSystemPrompt()
 console.log(`[server] System prompt loaded — ${SYSTEM_PROMPT.length} chars`)
 
-// ── Tool definition ───────────────────────────────────────────────────────────
+// ── Tool definitions ──────────────────────────────────────────────────────────
 
 const TOOLS: Anthropic.Tool[] = [
   {
@@ -40,11 +40,30 @@ const TOOLS: Anthropic.Tool[] = [
       required: ['file_key'],
     },
   },
+  {
+    name: 'update_project_context',
+    description:
+      'Silently updates the user\'s project context card. Call this when you have inferred or confirmed the current ISD phase, or when any project detail changes during conversation. Do NOT announce this to the user — just call it quietly in the background.',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        phase: {
+          type: 'string',
+          description: 'The current ISD phase (Empathize, Define, Ideate, Prototype, Implement, Measure, or Listen)',
+        },
+        storyline: { type: 'string', description: 'Updated one-liner description of what is being built' },
+        deadline: { type: 'string', description: 'Updated deadline in YYYY-MM-DD format' },
+      },
+    },
+  },
 ]
 
-async function executeTool(name: string, input: Record<string, string>): Promise<string> {
+async function executeTool(
+  name: string,
+  input: Record<string, string>,
+  res: Response,
+): Promise<string> {
   if (name === 'get_figma_file') {
-    // Accept either a bare key or a full URL
     const key = extractFigmaKey(input.file_key) ?? input.file_key
     try {
       return await fetchFigmaFile(key)
@@ -52,6 +71,13 @@ async function executeTool(name: string, input: Record<string, string>): Promise
       return `Error fetching Figma file: ${(err as Error).message}`
     }
   }
+
+  if (name === 'update_project_context') {
+    // Push a silent SSE event to the frontend to update the context card
+    res.write(`data: ${JSON.stringify({ type: 'context_update', context: input })}\n\n`)
+    return 'Project context updated.'
+  }
+
   return `Unknown tool: ${name}`
 }
 
@@ -62,33 +88,55 @@ interface ChatMessage {
   content: string
 }
 
-interface ChatRequest {
-  messages: ChatMessage[]
+interface ProjectContext {
   role?: string
+  storyline?: string
+  figmaUrl?: string
+  deadline?: string
   phase?: string
 }
 
+interface ChatRequest {
+  messages: ChatMessage[]
+  projectContext?: ProjectContext
+}
+
+function buildContextBlock(ctx: ProjectContext): string {
+  const lines = ['[PROJECT CONTEXT]']
+  if (ctx.role)      lines.push(`Role: ${ctx.role}`)
+  if (ctx.phase)     lines.push(`Current ISD Phase: ${ctx.phase}`)
+  if (ctx.storyline) lines.push(`Project: ${ctx.storyline}`)
+  if (ctx.figmaUrl)  lines.push(`Figma board: ${ctx.figmaUrl}`)
+  if (ctx.deadline)  lines.push(`Deadline: ${ctx.deadline}`)
+  lines.push('[/PROJECT CONTEXT]')
+  lines.push('')
+  lines.push('Use this context to tailor all guidance. Skip introductory questions about role or project — you already know. If the phase is blank, infer it from conversation or Figma, then call update_project_context silently.')
+  return lines.join('\n')
+}
+
 app.post('/chat', async (req: Request, res: Response) => {
-  const { messages, role, phase } = req.body as ChatRequest
+  const { messages, projectContext } = req.body as ChatRequest
 
   if (!messages?.length) {
     res.status(400).json({ error: 'messages array is required' })
     return
   }
 
-  // Inject role + phase as a prefix on the latest user message
-  const contextPrefix =
-    role || phase
-      ? `[Practitioner Role: ${role ?? 'unknown'} | Current Phase: ${phase ?? 'unknown'}]\n\n`
-      : ''
+  // Prepend context block as a system-style user message at position 0
+  const contextBlock = projectContext ? buildContextBlock(projectContext) : null
 
-  const anthropicMessages: Anthropic.MessageParam[] = messages.map((m, i) => ({
+  const baseMessages: Anthropic.MessageParam[] = messages.map((m) => ({
     role: m.role,
-    content:
-      i === messages.length - 1 && m.role === 'user'
-        ? contextPrefix + m.content
-        : m.content,
+    content: m.content,
   }))
+
+  const anthropicMessages: Anthropic.MessageParam[] = contextBlock
+    ? [
+        { role: 'user', content: contextBlock },
+        { role: 'assistant', content: 'Understood. I have your project context. Ready to coach.' },
+        ...baseMessages,
+      ]
+    : baseMessages
 
   res.setHeader('Content-Type', 'text/event-stream')
   res.setHeader('Cache-Control', 'no-cache')
@@ -114,7 +162,7 @@ app.post('/chat', async (req: Request, res: Response) => {
         for (const block of response.content) {
           if (block.type === 'tool_use') {
             console.log(`[server] Tool call: ${block.name}`, block.input)
-            const result = await executeTool(block.name, block.input as Record<string, string>)
+            const result = await executeTool(block.name, block.input as Record<string, string>, res)
             console.log(`[server] Tool result length: ${result.length} chars`)
             toolResults.push({
               type: 'tool_result',

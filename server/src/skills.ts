@@ -2,30 +2,42 @@ import fs from 'fs'
 import path from 'path'
 import https from 'https'
 
-// Ordered list — persona must come first
-const SKILL_FILES = [
-  'persona.md',
-  'isd-framework.md',
-  'playbook.md',
-  'decision-making.md',
-  'collaboration.md',
-  'quality-standards.md',
-  'mindsets.md',
-]
-
 const CONTENT_DIR = path.resolve(__dirname, '../../src/content')
 
-export function loadSystemPrompt(): string {
-  const sections = SKILL_FILES.map((file) => {
+// Always loaded — coach can't function without these
+const CORE_SKILLS = ['persona.md', 'isd-framework.md']
+
+// Loaded on demand via the get_skill tool
+export const ON_DEMAND_SKILLS = [
+  'playbook',
+  'decision-making',
+  'collaboration',
+  'quality-standards',
+  'mindsets',
+] as const
+
+export type OnDemandSkill = typeof ON_DEMAND_SKILLS[number]
+
+export function loadCorePrompt(): string {
+  const sections = CORE_SKILLS.map((file) => {
     const filePath = path.join(CONTENT_DIR, file)
     if (!fs.existsSync(filePath)) {
-      console.warn(`[skills] Missing: ${file} — skipping`)
+      console.warn(`[skills] Missing core skill: ${file}`)
       return null
     }
     return fs.readFileSync(filePath, 'utf-8').trim()
   }).filter(Boolean)
 
   return sections.join('\n\n---\n\n')
+}
+
+export function loadSkill(name: OnDemandSkill): string {
+  const filePath = path.join(CONTENT_DIR, `${name}.md`)
+  if (!fs.existsSync(filePath)) {
+    return `Skill "${name}" not found.`
+  }
+  console.log(`[skills] Loaded on-demand: ${name}.md`)
+  return fs.readFileSync(filePath, 'utf-8').trim()
 }
 
 // ── Figma ──────────────────────────────────────────────────────────────────────

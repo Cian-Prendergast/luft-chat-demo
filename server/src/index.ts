@@ -3,7 +3,7 @@ import express, { Request, Response } from 'express'
 import cors from 'cors'
 import path from 'path'
 import Anthropic from '@anthropic-ai/sdk'
-import { loadSystemPrompt, fetchFigmaFile, extractFigmaKey } from './skills'
+import { loadCorePrompt, loadSkill, ON_DEMAND_SKILLS, fetchFigmaFile, extractFigmaKey } from './skills'
 
 const app = express()
 
@@ -17,9 +17,9 @@ app.use(express.json())
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
-// Load all .md skills once at startup
-const SYSTEM_PROMPT = loadSystemPrompt()
-console.log(`[server] System prompt loaded — ${SYSTEM_PROMPT.length} chars`)
+// Load core skills once at startup (persona + isd-framework only)
+const SYSTEM_PROMPT = loadCorePrompt()
+console.log(`[server] Core prompt loaded — ${SYSTEM_PROMPT.length} chars`)
 
 // ── Tool definitions ──────────────────────────────────────────────────────────
 
@@ -38,6 +38,23 @@ const TOOLS: Anthropic.Tool[] = [
         },
       },
       required: ['file_key'],
+    },
+  },
+  {
+    name: 'get_skill',
+    description:
+      'Loads a supplementary knowledge skill into context. Call this when the user\'s question requires depth beyond the core ISD framework. If in doubt whether a skill is relevant, load it — it\'s better to pull a file unnecessarily than to guess.',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        name: {
+          type: 'string',
+          enum: [...ON_DEMAND_SKILLS],
+          description:
+            'The skill to load. Options: playbook (workflow variants, decision gates), decision-making (who decides what, escalation), collaboration (roles, rituals, anti-patterns), quality-standards (readiness criteria, review gates), mindsets (5 NLD traveller profiles, DX lenses).',
+        },
+      },
+      required: ['name'],
     },
   },
   {
@@ -70,6 +87,10 @@ async function executeTool(
     } catch (err) {
       return `Error fetching Figma file: ${(err as Error).message}`
     }
+  }
+
+  if (name === 'get_skill') {
+    return loadSkill(input.name as Parameters<typeof loadSkill>[0])
   }
 
   if (name === 'update_project_context') {

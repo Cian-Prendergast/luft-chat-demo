@@ -81,8 +81,8 @@
       <mxGeometry x="445" y="85" width="210" height="36" as="geometry" />
     </mxCell>
 
-    <mxCell id="setup-fields" value="• Role (pill select — required)&#xa;• Storyline one-liner (required)&#xa;• Figma board URL (optional)&#xa;• Deadline (optional)&#xa;&#xa;Phase left blank — inferred later" style="rounded=1;fillColor=#ffffff;strokeColor=#c0cce8;fontSize=10;align=left;" vertex="1" parent="1">
-      <mxGeometry x="445" y="130" width="210" height="100" as="geometry" />
+    <mxCell id="setup-fields" value="• Role (10 pills — required)&#xa;  UX/UI/Service/Conversational Designer&#xa;  UX Writer · User Researcher&#xa;  CX Writer · PO · Dev · Researcher&#xa;• Storyline one-liner (required)&#xa;• Figma board URL (optional)&#xa;• Deadline (optional)&#xa;&#xa;Phase left blank — inferred later" style="rounded=1;fillColor=#ffffff;strokeColor=#c0cce8;fontSize=10;align=left;" vertex="1" parent="1">
+      <mxGeometry x="445" y="130" width="210" height="125" as="geometry" />
     </mxCell>
 
     <mxCell id="arrow-setup-to-project" value="onDone(ctx)" style="edgeStyle=orthogonalEdgeStyle;fontSize=10;" edge="1" parent="1" source="screen-setup" target="project-state">
@@ -300,8 +300,8 @@
       <mxGeometry x="1775" y="172" width="250" height="36" as="geometry" />
     </mxCell>
 
-    <mxCell id="future-roles" value="Existing: Service Designer · CX Writer&#xa;Product Owner · Developer · Researcher&#xa;&#xa;+ New: UX Designer · UI Designer&#xa;UX Writer · User Researcher&#xa;Conversational Designer" style="rounded=1;fillColor=#fbbf24;strokeColor=#d97706;fontSize=10;align=left;" vertex="1" parent="1">
-      <mxGeometry x="1775" y="225" width="250" height="90" as="geometry" />
+    <mxCell id="future-roles" value="UX Designer · UI Designer&#xa;UX Writer · User Researcher&#xa;Service Designer · Conversational Designer&#xa;CX Writer · Product Owner&#xa;Developer · Researcher" style="rounded=1;fillColor=#fbbf24;strokeColor=#d97706;fontSize=10;align=left;" vertex="1" parent="1">
+      <mxGeometry x="1775" y="225" width="250" height="75" as="geometry" />
     </mxCell>
 
     <mxCell id="future-oauth" value="Figma OAuth&#xa;(replace PAT token)" style="rounded=1;fillColor=#fde68a;strokeColor=#f59e0b;fontSize=11;" vertex="1" parent="1">
@@ -316,8 +316,8 @@
       <mxGeometry x="1790" y="440" width="220" height="44" as="geometry" />
     </mxCell>
 
-    <mxCell id="shipped-badge" value="✅ Conversation history&#xa;✅ Figma tool use&#xa;✅ Project context card&#xa;✅ Silent phase updates" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=left;fontSize=10;rounded=1;fontColor=#2d6a2d;" vertex="1" parent="1">
-      <mxGeometry x="1760" y="560" width="260" height="70" as="geometry" />
+    <mxCell id="shipped-badge" value="✅ Conversation history&#xa;✅ Figma tool use&#xa;✅ Project context card&#xa;✅ Silent phase updates&#xa;✅ File attachments (image + PDF)&#xa;✅ On-demand skill loading&#xa;✅ 10 roles" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=left;fontSize=10;rounded=1;fontColor=#2d6a2d;" vertex="1" parent="1">
+      <mxGeometry x="1760" y="560" width="260" height="90" as="geometry" />
     </mxCell>
 
     <!-- ═══════════════════════════════════════════ -->

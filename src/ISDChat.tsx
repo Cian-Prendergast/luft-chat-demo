@@ -35,7 +35,7 @@ interface Message {
 }
 
 // Payload shape sent to backend
-interface ContentBlock =
+type ContentBlock =
   | { type: 'text'; text: string }
   | { type: 'image'; mediaType: string; data: string }
   | { type: 'document'; mediaType: string; data: string }
@@ -71,7 +71,11 @@ async function readFile(file: File): Promise<PendingFile | null> {
 }
 
 const ISD_PHASES = ['Empathize', 'Define', 'Ideate', 'Prototype', 'Implement', 'Measure', 'Listen']
-const ROLES = ['UX Designer', 'UI Designer', 'UX Writer', 'User Researcher', 'Service Designer', 'Conversational Designer']
+const ROLES = [
+  'UX Designer', 'UI Designer', 'UX Writer', 'User Researcher',
+  'Service Designer', 'Conversational Designer',
+  'CX Writer', 'Product Owner', 'Developer', 'Researcher',
+]
 
 const QUICK_PROMPTS = [
   { icon: '🟥', label: 'Am I ready to move to the ideation phase?' },

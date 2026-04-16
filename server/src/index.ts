@@ -104,9 +104,30 @@ async function executeTool(
 
 // ── POST /chat ────────────────────────────────────────────────────────────────
 
+type ContentBlock =
+  | { type: 'text'; text: string }
+  | { type: 'image'; mediaType: string; data: string }
+  | { type: 'document'; mediaType: string; data: string }
+
 interface ChatMessage {
   role: 'user' | 'assistant'
-  content: string
+  content: string | ContentBlock[]
+}
+
+function toAnthropicContent(content: string | ContentBlock[]): Anthropic.ContentBlockParam[] {
+  if (typeof content === 'string') return [{ type: 'text', text: content }]
+  return content.map((block): Anthropic.ContentBlockParam => {
+    if (block.type === 'text') return { type: 'text', text: block.text }
+    if (block.type === 'image') return {
+      type: 'image',
+      source: { type: 'base64', media_type: block.mediaType as 'image/png' | 'image/jpeg' | 'image/gif' | 'image/webp', data: block.data },
+    }
+    // document (PDF)
+    return {
+      type: 'document',
+      source: { type: 'base64', media_type: 'application/pdf', data: block.data },
+    } as unknown as Anthropic.ContentBlockParam
+  })
 }
 
 interface ProjectContext {
@@ -148,7 +169,7 @@ app.post('/chat', async (req: Request, res: Response) => {
 
   const baseMessages: Anthropic.MessageParam[] = messages.map((m) => ({
     role: m.role,
-    content: m.content,
+    content: toAnthropicContent(m.content),
   }))
 
   const anthropicMessages: Anthropic.MessageParam[] = contextBlock

@@ -34,11 +34,6 @@ interface Message {
   attachment?: MessageAttachment
 }
 
-// Payload shape sent to backend
-type ContentBlock =
-  | { type: 'text'; text: string }
-  | { type: 'image'; mediaType: string; data: string }
-  | { type: 'document'; mediaType: string; data: string }
 
 const SUPPORTED_TYPES: Record<string, string> = {
   'image/png':       'image/png',
@@ -70,7 +65,6 @@ async function readFile(file: File): Promise<PendingFile | null> {
   })
 }
 
-const ISD_PHASES = ['Empathize', 'Define', 'Ideate', 'Prototype', 'Implement', 'Measure', 'Listen']
 const ROLES = [
   'UX Designer', 'UI Designer', 'UX Writer', 'User Researcher',
   'Service Designer', 'Conversational Designer',

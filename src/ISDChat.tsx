@@ -73,6 +73,17 @@ const ROLES = [
   'CX Writer', 'Product Owner', 'Developer', 'Researcher',
 ]
 
+function parseOptions(text: string): { body: string; options: string[] } {
+  const match = text.match(/<options>([\s\S]*?)<\/options>/)
+  if (!match) return { body: text, options: [] }
+  const options = match[1]
+    .split('\n')
+    .map((l) => l.trim())
+    .filter((l) => l.length > 0)
+  const body = text.replace(/<options>[\s\S]*?<\/options>/, '').trim()
+  return { body, options }
+}
+
 const QUICK_PROMPTS = [
   { icon: '🟥', label: 'Am I ready to move to the ideation phase?' },
   { icon: '⚠️', label: 'What are the risks if I skip the Empathize step?' },
@@ -337,6 +348,21 @@ function WelcomeScreen({ onSend, project }: { onSend: (text: string, file: Pendi
 
 // ── ChatScreen ─────────────────────────────────────────────────────────────────
 
+const MD_COMPONENTS = {
+  p: ({ children }: any) => <p className="mb-2 last:mb-0">{children}</p>,
+  strong: ({ children }: any) => <strong className="font-semibold">{children}</strong>,
+  ul: ({ children }: any) => <ul className="list-disc pl-4 mb-2 space-y-1">{children}</ul>,
+  ol: ({ children }: any) => <ol className="list-decimal pl-4 mb-2 space-y-1">{children}</ol>,
+  li: ({ children }: any) => <li className="text-sm">{children}</li>,
+  hr: () => <hr className="my-3 border-gray-200" />,
+  table: ({ children }: any) => <div className="overflow-x-auto mb-2"><table className="text-xs border-collapse w-full">{children}</table></div>,
+  th: ({ children }: any) => <th className="border border-gray-200 px-2 py-1 bg-gray-50 font-semibold text-left">{children}</th>,
+  td: ({ children }: any) => <td className="border border-gray-200 px-2 py-1">{children}</td>,
+  h1: ({ children }: any) => <h1 className="font-bold text-base mb-2">{children}</h1>,
+  h2: ({ children }: any) => <h2 className="font-bold text-sm mb-1 mt-3">{children}</h2>,
+  h3: ({ children }: any) => <h3 className="font-semibold text-sm mb-1 mt-2">{children}</h3>,
+}
+
 function ChatScreen({
   messages, onSend, onReset, project,
 }: {
@@ -349,47 +375,43 @@ function ChatScreen({
     <div className="flex-1 flex flex-col min-h-0">
       <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
         <AnimatePresence initial={false}>
-          {messages.map((msg) => (
-            <motion.div key={msg.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-              className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-              <div className={`max-w-[78%] px-4 py-3 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
-                msg.role === 'user'
-                  ? 'bg-[#1a2044] text-white rounded-br-none'
-                  : 'bg-white border border-gray-200 text-gray-800 rounded-bl-none shadow-sm'
-              }`}>
-                {msg.role === 'assistant' && !msg.text ? (
-                  <span className="flex items-center gap-1 h-4">
-                    {[0, 1, 2].map((i) => (
-                      <motion.span key={i} className="w-1.5 h-1.5 rounded-full bg-gray-400 block"
-                        animate={{ opacity: [0.3, 1, 0.3] }}
-                        transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }} />
+          {messages.map((msg) => {
+            const { body, options } = msg.role === 'assistant' ? parseOptions(msg.text) : { body: msg.text, options: [] }
+            return (
+              <motion.div key={msg.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
+                <div className={`max-w-[78%] px-4 py-3 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
+                  msg.role === 'user'
+                    ? 'bg-[#1a2044] text-white rounded-br-none'
+                    : 'bg-white border border-gray-200 text-gray-800 rounded-bl-none shadow-sm'
+                }`}>
+                  {msg.role === 'assistant' && !msg.text ? (
+                    <span className="flex items-center gap-1 h-4">
+                      {[0, 1, 2].map((i) => (
+                        <motion.span key={i} className="w-1.5 h-1.5 rounded-full bg-gray-400 block"
+                          animate={{ opacity: [0.3, 1, 0.3] }}
+                          transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }} />
+                      ))}
+                    </span>
+                  ) : msg.role === 'assistant' ? (
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={MD_COMPONENTS}>{body}</ReactMarkdown>
+                  ) : body}
+                  {msg.attachment && <MessageAttachmentDisplay attachment={msg.attachment} />}
+                </div>
+                {options.length > 0 && (
+                  <div className="mt-2 max-w-[78%] flex flex-col gap-2">
+                    {options.map((opt) => (
+                      <motion.button key={opt} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                        onClick={() => onSend(opt, null)}
+                        className="text-left px-4 py-2.5 bg-white border border-[#1a2044] text-[#1a2044] rounded-xl text-sm font-medium hover:bg-[#1a2044] hover:text-white transition-colors shadow-sm">
+                        {opt}
+                      </motion.button>
                     ))}
-                  </span>
-                ) : msg.role === 'assistant' ? (
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    components={{
-                      p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
-                      strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
-                      ul: ({ children }) => <ul className="list-disc pl-4 mb-2 space-y-1">{children}</ul>,
-                      ol: ({ children }) => <ol className="list-decimal pl-4 mb-2 space-y-1">{children}</ol>,
-                      li: ({ children }) => <li className="text-sm">{children}</li>,
-                      hr: () => <hr className="my-3 border-gray-200" />,
-                      table: ({ children }) => <div className="overflow-x-auto mb-2"><table className="text-xs border-collapse w-full">{children}</table></div>,
-                      th: ({ children }) => <th className="border border-gray-200 px-2 py-1 bg-gray-50 font-semibold text-left">{children}</th>,
-                      td: ({ children }) => <td className="border border-gray-200 px-2 py-1">{children}</td>,
-                      h1: ({ children }) => <h1 className="font-bold text-base mb-2">{children}</h1>,
-                      h2: ({ children }) => <h2 className="font-bold text-sm mb-1 mt-3">{children}</h2>,
-                      h3: ({ children }) => <h3 className="font-semibold text-sm mb-1 mt-2">{children}</h3>,
-                    }}
-                  >
-                    {msg.text}
-                  </ReactMarkdown>
-                ) : msg.text}
-                {msg.attachment && <MessageAttachmentDisplay attachment={msg.attachment} />}
-              </div>
-            </motion.div>
-          ))}
+                  </div>
+                )}
+              </motion.div>
+            )
+          })}
         </AnimatePresence>
       </div>
 

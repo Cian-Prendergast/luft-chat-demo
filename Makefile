@@ -37,6 +37,7 @@ deploy:
 		--project $(PROJECT_ID) \
 		--allow-unauthenticated \
 		--set-secrets ANTHROPIC_API_KEY=anthropic-api-key:latest
+		# --set-secrets FIGMA_ACCESS_TOKEN=figma-access-token:latest  # uncomment after: gcloud secrets create figma-access-token
 	@echo "Done. Live URL:"
 	@gcloud run services describe $(SERVICE_NAME) --region $(REGION) --project $(PROJECT_ID) --format "value(status.url)"
 

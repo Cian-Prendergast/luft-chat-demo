@@ -49,19 +49,22 @@ The live URL is printed on completion.
 gcloud projects add-iam-policy-binding dmnl-generative-ai-pocs --member="serviceAccount:421381233503-compute@developer.gserviceaccount.com" --role="roles/secretmanager.secretAccessor"
 ```
 
-**Secrets** are stored in GCloud Secret Manager under project `dmnl-generative-ai-pocs`:
+**Secrets** — local vs Cloud Run work differently:
 
-| Secret name | Description |
-|---|---|
-| `anthropic-api-key` | Anthropic API key |
-| `figma-access-token` | Figma personal access token (optional) |
+| | Local (`make dev`) | Cloud Run (`make deploy`) |
+|---|---|---|
+| `ANTHROPIC_API_KEY` | `server/.env` | GCloud Secret Manager |
+| `FIGMA_ACCESS_TOKEN` | `server/.env` | GCloud Secret Manager |
 
-To add the Figma secret when ready:
+> `.env` is never included in the Docker image. Cloud Run has no access to it — secrets must be pushed to Secret Manager separately.
+
+To push a secret to GCloud (one-time per secret):
 ```bash
-echo -n "your-figma-token" | gcloud secrets create figma-access-token --data-file=- --project dmnl-generative-ai-pocs
+echo -n "your-anthropic-key" | gcloud secrets create anthropic-api-key --data-file=- --project dmnl-generative-ai-pocs
+echo -n "your-figma-token"   | gcloud secrets create figma-access-token --data-file=- --project dmnl-generative-ai-pocs
 ```
 
-Then uncomment `FIGMA_ACCESS_TOKEN=figma-access-token:latest` in the Makefile deploy target.
+Once the `figma-access-token` secret exists, uncomment the `FIGMA_ACCESS_TOKEN` line in the Makefile `deploy` target.
 
 ## Structure
 

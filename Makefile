@@ -3,14 +3,13 @@ SERVICE_NAME := luft-chat-demo
 REGION       := europe-west1
 IMAGE        := gcr.io/$(PROJECT_ID)/$(SERVICE_NAME)
 
-.PHONY: dev stop deploy logs install-py
+.PHONY: dev stop deploy logs
 
 # ── Local ──────────────────────────────────────────────────────────────────────
 
-install-py:
-	cd server && uv pip install -r requirements.txt
-
 dev:
+	@echo "Syncing Python deps..."
+	@cd server && uv pip install -r requirements.txt -q
 	@echo "Starting DX Coach locally..."
 	@echo "  Frontend → http://localhost:5173"
 	@echo "  Backend  → http://localhost:3001"

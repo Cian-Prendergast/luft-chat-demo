@@ -5,7 +5,7 @@ AI coaching assistant for Lufthansa Digital Hangar practitioners navigating the 
 ## Stack
 
 - **Frontend** — React + TypeScript + Vite + Tailwind CSS + Framer Motion
-- **Backend** — Node.js + Express + Anthropic SDK (streaming)
+- **Backend** — Python + FastAPI + Anthropic SDK (streaming SSE)
 
 ## Commands
 
@@ -19,15 +19,14 @@ AI coaching assistant for Lufthansa Digital Hangar practitioners navigating the 
 ## Local setup
 
 ```bash
-# 1. Install dependencies
+# 1. Install frontend dependencies
 npm install
-cd server && npm install && cd ..
 
 # 2. Add your Anthropic API key
 cp server/.env.example server/.env
 # edit server/.env — set ANTHROPIC_API_KEY=sk-ant-...
 
-# 3. Start everything
+# 3. Start everything (installs Python deps via uv automatically)
 make dev
 ```
 
@@ -74,9 +73,9 @@ isd-app/
 │   ├── ISDDashboard.tsx  # Framework reference panel (collapsible)
 │   └── App.tsx
 └── server/
-    └── src/
-        ├── index.ts      # Express API — POST /chat
-        └── skills.ts     # Loads .md files into system prompt
+    ├── main.py           # FastAPI server — POST /chat, SSE streaming, agentic loop
+    ├── skills.py         # Loads .md files, Figma API integration
+    └── requirements.txt  # Python dependencies (managed via uv)
 ```
 
 ## API

@@ -16,7 +16,7 @@
       <mxGeometry x="420" y="25" width="420" height="30" as="geometry" />
     </mxCell>
 
-    <mxCell id="label-backend" value="BACKEND — Express / index.ts" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=11;fontColor=#666666;" vertex="1" parent="1">
+    <mxCell id="label-backend" value="BACKEND — FastAPI / main.py" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=11;fontColor=#666666;" vertex="1" parent="1">
       <mxGeometry x="900" y="25" width="420" height="30" as="geometry" />
     </mxCell>
 
@@ -52,7 +52,7 @@
       <mxGeometry relative="1" as="geometry" />
     </mxCell>
 
-    <mxCell id="skills-ts" value="skills.ts&#xa;loadSystemPrompt()&#xa;fetchFigmaFile()&#xa;extractFigmaKey()" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;fontStyle=1;align=left;" vertex="1" parent="1">
+    <mxCell id="skills-ts" value="skills.py&#xa;load_core_prompt()&#xa;fetch_figma_file()&#xa;extract_figma_key()" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;fontStyle=1;align=left;" vertex="1" parent="1">
       <mxGeometry x="80" y="455" width="210" height="65" as="geometry" />
     </mxCell>
 
@@ -164,7 +164,7 @@
     </mxCell>
 
     <!-- POST /chat handler -->
-    <mxCell id="post-chat" value="POST /chat&#xa;index.ts" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+    <mxCell id="post-chat" value="POST /chat&#xa;main.py" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" vertex="1" parent="1">
       <mxGeometry x="940" y="130" width="200" height="50" as="geometry" />
     </mxCell>
 
@@ -202,7 +202,7 @@
       <mxGeometry relative="1" as="geometry" />
     </mxCell>
 
-    <mxCell id="tool-exec" value="executeTool(name, input, res)" style="rounded=1;fillColor=#ffe6cc;strokeColor=#e67c00;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+    <mxCell id="tool-exec" value="execute_tool(name, input, queue)" style="rounded=1;fillColor=#ffe6cc;strokeColor=#e67c00;fontSize=11;fontStyle=1;" vertex="1" parent="1">
       <mxGeometry x="940" y="510" width="220" height="44" as="geometry" />
     </mxCell>
 
@@ -316,7 +316,7 @@
       <mxGeometry x="1790" y="440" width="220" height="44" as="geometry" />
     </mxCell>
 
-    <mxCell id="shipped-badge" value="✅ Conversation history&#xa;✅ Figma tool use&#xa;✅ Project context card&#xa;✅ Silent phase updates&#xa;✅ File attachments (image + PDF)&#xa;✅ On-demand skill loading&#xa;✅ 10 roles" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=left;fontSize=10;rounded=1;fontColor=#2d6a2d;" vertex="1" parent="1">
+    <mxCell id="shipped-badge" value="✅ Conversation history&#xa;✅ Figma tool use&#xa;✅ Project context card&#xa;✅ Silent phase updates&#xa;✅ File attachments (image + PDF)&#xa;✅ On-demand skill loading&#xa;✅ 10 roles&#xa;✅ Python/FastAPI backend&#xa;✅ Markdown rendering" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=left;fontSize=10;rounded=1;fontColor=#2d6a2d;" vertex="1" parent="1">
       <mxGeometry x="1760" y="560" width="260" height="90" as="geometry" />
     </mxCell>
 

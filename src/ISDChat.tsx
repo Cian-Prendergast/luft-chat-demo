@@ -1,5 +1,7 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -355,7 +357,35 @@ function ChatScreen({
                   ? 'bg-[#1a2044] text-white rounded-br-none'
                   : 'bg-white border border-gray-200 text-gray-800 rounded-bl-none shadow-sm'
               }`}>
-                {msg.text}
+                {msg.role === 'assistant' && !msg.text ? (
+                  <span className="flex items-center gap-1 h-4">
+                    {[0, 1, 2].map((i) => (
+                      <motion.span key={i} className="w-1.5 h-1.5 rounded-full bg-gray-400 block"
+                        animate={{ opacity: [0.3, 1, 0.3] }}
+                        transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }} />
+                    ))}
+                  </span>
+                ) : msg.role === 'assistant' ? (
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                      strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+                      ul: ({ children }) => <ul className="list-disc pl-4 mb-2 space-y-1">{children}</ul>,
+                      ol: ({ children }) => <ol className="list-decimal pl-4 mb-2 space-y-1">{children}</ol>,
+                      li: ({ children }) => <li className="text-sm">{children}</li>,
+                      hr: () => <hr className="my-3 border-gray-200" />,
+                      table: ({ children }) => <div className="overflow-x-auto mb-2"><table className="text-xs border-collapse w-full">{children}</table></div>,
+                      th: ({ children }) => <th className="border border-gray-200 px-2 py-1 bg-gray-50 font-semibold text-left">{children}</th>,
+                      td: ({ children }) => <td className="border border-gray-200 px-2 py-1">{children}</td>,
+                      h1: ({ children }) => <h1 className="font-bold text-base mb-2">{children}</h1>,
+                      h2: ({ children }) => <h2 className="font-bold text-sm mb-1 mt-3">{children}</h2>,
+                      h3: ({ children }) => <h3 className="font-semibold text-sm mb-1 mt-2">{children}</h3>,
+                    }}
+                  >
+                    {msg.text}
+                  </ReactMarkdown>
+                ) : msg.text}
                 {msg.attachment && <MessageAttachmentDisplay attachment={msg.attachment} />}
               </div>
             </motion.div>

@@ -7,6 +7,15 @@ AI coaching assistant for Lufthansa Digital Hangar practitioners navigating the 
 - **Frontend** — React + TypeScript + Vite + Tailwind CSS + Framer Motion
 - **Backend** — Node.js + Express + Anthropic SDK (streaming)
 
+## Commands
+
+| Command | What it does |
+|---|---|
+| `make dev` | Run locally (frontend + backend) |
+| `make stop` | Kill local servers |
+| `make deploy` | Build & deploy to Cloud Run |
+| `make logs` | Tail Cloud Run logs |
+
 ## Local setup
 
 ```bash

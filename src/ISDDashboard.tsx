@@ -3,7 +3,9 @@ import { motion } from 'framer-motion'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
-type Role = 'Service Designer' | 'CX Writer' | 'Product Owner' | 'Developer' | 'Researcher'
+type Role =
+  | 'Service Designer' | 'CX Writer' | 'Product Owner' | 'Developer' | 'Researcher'
+  | 'UX Designer' | 'UI Designer' | 'UX Writer' | 'User Researcher' | 'Conversational Designer'
 
 type PhaseId =
   | 'Empathize'
@@ -102,17 +104,25 @@ const PHASES: Phase[] = [
   },
 ]
 
-const ALL_ROLES: Role[] = ['Service Designer', 'CX Writer', 'Product Owner', 'Developer', 'Researcher']
+const ALL_ROLES: Role[] = [
+  'Service Designer', 'CX Writer', 'Product Owner', 'Developer', 'Researcher',
+  'UX Designer', 'UI Designer', 'UX Writer', 'User Researcher', 'Conversational Designer',
+]
 
 // ── Sub-components ─────────────────────────────────────────────────────────────
 
 function RoleTag({ role }: { role: Role }) {
   const palette: Record<Role, string> = {
-    'Service Designer': 'bg-purple-100 text-purple-800',
-    'CX Writer':        'bg-pink-100 text-pink-800',
-    'Product Owner':    'bg-blue-100 text-blue-800',
-    'Developer':        'bg-green-100 text-green-800',
-    'Researcher':       'bg-amber-100 text-amber-800',
+    'Service Designer':        'bg-purple-100 text-purple-800',
+    'CX Writer':               'bg-pink-100 text-pink-800',
+    'Product Owner':           'bg-blue-100 text-blue-800',
+    'Developer':               'bg-green-100 text-green-800',
+    'Researcher':              'bg-amber-100 text-amber-800',
+    'UX Designer':             'bg-violet-100 text-violet-800',
+    'UI Designer':             'bg-fuchsia-100 text-fuchsia-800',
+    'UX Writer':               'bg-rose-100 text-rose-800',
+    'User Researcher':         'bg-orange-100 text-orange-800',
+    'Conversational Designer': 'bg-teal-100 text-teal-800',
   }
   return (
     <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${palette[role]}`}>

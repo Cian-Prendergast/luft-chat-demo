@@ -1,14 +1,45 @@
-.PHONY: dev stop
+PROJECT_ID   := dmnl-generative-ai-pocs
+SERVICE_NAME := luft-chat-demo
+REGION       := europe-west1
+IMAGE        := gcr.io/$(PROJECT_ID)/$(SERVICE_NAME)
+
+.PHONY: dev stop deploy logs
+
+# ── Local ──────────────────────────────────────────────────────────────────────
 
 dev:
-	@echo "Starting DX Coach..."
+	@echo "Syncing Python deps..."
+	@cd server && uv pip install -r requirements.txt -q
+	@echo "Starting DX Coach locally..."
+	@echo "  Frontend → http://localhost:5173"
+	@echo "  Backend  → http://localhost:3001"
 	@npx concurrently \
 		--names "frontend,backend" \
 		--prefix-colors "cyan,magenta" \
 		"npm run dev" \
-		"cd server && npm run dev"
+		"cd server && uv run uvicorn main:app --host 0.0.0.0 --port 3001 --reload"
 
 stop:
 	@pkill -f "vite" || true
-	@pkill -f "ts-node src/index" || true
+	@pkill -f "uvicorn" || true
 	@echo "Stopped."
+
+# ── GCloud ─────────────────────────────────────────────────────────────────────
+
+deploy:
+	@echo "Building and pushing image to GCR..."
+	gcloud builds submit --tag $(IMAGE) --project $(PROJECT_ID)
+	@echo "Deploying to Cloud Run..."
+	gcloud run deploy $(SERVICE_NAME) \
+		--image $(IMAGE) \
+		--platform managed \
+		--region $(REGION) \
+		--project $(PROJECT_ID) \
+		--allow-unauthenticated \
+		--set-secrets ANTHROPIC_API_KEY=anthropic-api-key:latest
+		# --set-secrets FIGMA_ACCESS_TOKEN=figma-access-token:latest  # uncomment after: gcloud secrets create figma-access-token
+	@echo "Done. Live URL:"
+	@gcloud run services describe $(SERVICE_NAME) --region $(REGION) --project $(PROJECT_ID) --format "value(status.url)"
+
+logs:
+	gcloud run services logs read $(SERVICE_NAME) --region $(REGION) --project $(PROJECT_ID) --limit 50

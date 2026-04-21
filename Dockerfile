@@ -12,40 +12,26 @@ COPY public ./public
 
 RUN npm run build
 
-# ── Stage 2: Build Express backend ────────────────────────────────────────────
-FROM node:22-alpine AS backend-builder
+# ── Stage 2: Production runtime (Python) ──────────────────────────────────────
+FROM python:3.12-slim AS runtime
 
 WORKDIR /app/server
 
-COPY server/package.json server/package-lock.json ./
-RUN npm ci
+RUN pip install --no-cache-dir uv
+COPY server/requirements.txt ./
+RUN uv pip install --system --no-cache -r requirements.txt
 
-COPY server/tsconfig.json ./
-COPY server/src ./src
+COPY server/main.py server/skills.py ./
 
-RUN npm run build
+# Built frontend (served as static files by FastAPI)
+COPY --from=frontend-builder /app/dist ../dist
 
-# ── Stage 3: Production runtime ───────────────────────────────────────────────
-FROM node:22-alpine AS runtime
+# Content .md files loaded at runtime by skills.py
+COPY src/content ../src/content
 
-WORKDIR /app
-
-# Production backend deps only
-COPY server/package.json server/package-lock.json ./server/
-RUN cd server && npm ci --omit=dev
-
-# Compiled backend
-COPY --from=backend-builder /app/server/dist ./server/dist
-
-# Built frontend (served as static files by Express)
-COPY --from=frontend-builder /app/dist ./dist
-
-# Content .md files loaded at runtime by skills.ts
-COPY src/content ./src/content
-
-ENV NODE_ENV=production
+ENV APP_ENV=production
 ENV PORT=8080
 
 EXPOSE 8080
 
-CMD ["node", "server/dist/index.js"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]

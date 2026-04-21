@@ -3,9 +3,12 @@ SERVICE_NAME := luft-chat-demo
 REGION       := europe-west1
 IMAGE        := gcr.io/$(PROJECT_ID)/$(SERVICE_NAME)
 
-.PHONY: dev stop deploy logs
+.PHONY: dev stop deploy logs install-py
 
 # ── Local ──────────────────────────────────────────────────────────────────────
+
+install-py:
+	cd server && uv pip install -r requirements.txt
 
 dev:
 	@echo "Starting DX Coach locally..."
@@ -15,11 +18,11 @@ dev:
 		--names "frontend,backend" \
 		--prefix-colors "cyan,magenta" \
 		"npm run dev" \
-		"cd server && npm run dev"
+		"cd server && uv run uvicorn main:app --host 0.0.0.0 --port 3001 --reload"
 
 stop:
 	@pkill -f "vite" || true
-	@pkill -f "ts-node src/index" || true
+	@pkill -f "uvicorn" || true
 	@echo "Stopped."
 
 # ── GCloud ─────────────────────────────────────────────────────────────────────
